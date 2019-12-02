@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page flip effect with hammer.js</title>
+    <style>
+      html {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        background: url(https://images.pexels.com/photos/3166774/pexels-photo-3166774.jpeg?auto=compress&cs=tinysrgb&h=650&w=940);
+        background-size: cover;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: tahoma;
+      }
+      h1 {
+        text-align: center;
+      }
+      .scene {
+        width: 45%;
+        height: 90%;
+        margin: 5% 5% 5% 50%;
+        perspective: 1000px;
+      }
+      .book {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+      .page {
+        cursor: pointer;
+        position: absolute;
+        color: black;
+        width: 100%;
+        height: 100%;
+        transition: 1.5s transform;
+        transform-style: preserve-3d;
+        transform-origin: left center;
+      }
+      .front,
+      .back {
+        position: absolute;
+        width: 100%;
+        height: 500px;
+        box-sizing: border-box;
+        backface-visibility: hidden;
+        background: -webkit-gradient(
+          linear,
+          0% 0%,
+          100% 100%,
+          from(#ffffff),
+          to(#cccccc)
+        );
+        padding: 50px;
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+      .page.active {
+        z-index: 1;
+      }
+      .page.flipped {
+        transform: rotateY(-180deg);
+      }
+      .page.flipped:last-of-type {
+        z-index: 1;
+      }
+      p {
+        margin: 0 0 0.1em;
+        text-indent: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene">
+      <article class="book">
+        <section class="page active">
+          <div class="front">
+            <h1>Book Page Flip Effect</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-1-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+        <section class="page">
+          <div class="front">
+            <h1>-2-</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-3-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+        <section class="page">
+          <div class="front">
+            <h1>-4-</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-5-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+        <section class="page">
+          <div class="front">
+            <h1>-6-</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-7-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+        <section class="page">
+          <div class="front">
+            <h1>-7-</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-8-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+        <section class="page">
+          <div class="front">
+            <h1>-9-</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ipsam
+              asperiores corporis esse obcaecati, unde quod, eaque autem
+              quibusdam dolorem animi dolore dignissimos? Distinctio sapiente,
+              totam consequatur voluptate veritatis repudiandae.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, tenetur molestias nemo veniam adipisci amet? Beatae
+              eligendi qui nemo accusantium quasi perferendis nostrum, eius
+              harum consequuntur nihil autem totam in!
+            </p>
+          </div>
+          <div class="back">
+            <h1>-10-</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+              nemo molestias possimus est, rem debitis repudiandae! Debitis
+              dolore possimus vitae praesentium blanditiis nam, dolor unde,
+              neque expedita nobis dignissimos quod.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              repellendus ex fuga voluptate aliquid ea aspernatur cumque et
+              magnam suscipit labore quibusdam consequuntur tempora sint
+              excepturi, eaque unde, expedita ad?
+            </p>
+          </div>
+        </section>
+      </article>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="hammer.min.js"></script>
+    <script>
+      var currentPage = 0;
+      $(".book")
+        .on("click", ".active", nextPage)
+        .on("click", ".flipped", prevPage);
+      $(".book")
+        .hammer()
+        .on("swipeleft", nextPage);
+      $(".book")
+        .hammer()
+        .on("swipeleft", prevPage);
+
+      function prevPage() {
+        $(".flipped")
+          .last()
+          .removeClass("flipped")
+          .addClass("active")
+          .siblings(".page")
+          .removeClass("active");
+      }
+      function nextPage() {
+        $(".active")
+          .removeClass("active")
+          .addClass("flipped")
+          .next(".page")
+          .addClass("active")
+          .siblings();
+      }
+    </script>
+  </body>
+</html>
